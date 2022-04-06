@@ -1,5 +1,6 @@
 import { Pool, PoolConfig } from "pg";
-
+import { connect } from 'mongoose';
+connect('mongodb://localhost:27017/rumbo')
 
 export const pool = new Pool({
   ssl: false,

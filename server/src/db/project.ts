@@ -1,4 +1,7 @@
 import { query } from "./db";
+// import Mongoose from "mongoose";
+// import ProjectModel from "./model/projects"
+
 
 export const getProjects = async (
     email?: string
