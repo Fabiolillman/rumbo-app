@@ -17,3 +17,10 @@ export const getEmployees = async () => {
 //   return newEmployee
   return Mongoose.model("employee").find()
 };
+
+// import EmployeeModel from "./model/employee";
+    
+// export const getEmployees = async () => {
+//     const employees = await EmployeeModel.find();
+//     return employees;
+// }

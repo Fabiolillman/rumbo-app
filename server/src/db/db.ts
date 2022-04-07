@@ -1,4 +1,5 @@
 import { Pool, PoolConfig } from "pg";
+
 import { connect } from 'mongoose';
 connect('mongodb://localhost:27017/rumbo')
 
