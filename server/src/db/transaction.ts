@@ -57,7 +57,8 @@ export const getTransactionsMeta = async (email: string) => {
                       (SELECT * FROM transactions WHERE email = $1 AND status = 0) as nested
                     GROUP BY EXTRACT(month from time), EXTRACT(year from time)
                     ORDER BY year, month`;
-  return await query(sqlQuery, [email]);
+  const res: any = await query(sqlQuery, [email]);
+  return res.map(meta => ({ year: Number(meta.year), month: Number(meta.month) }));
 };
 
 export const addTransaction = (transaction: Transaction) => {
@@ -77,12 +78,9 @@ export const filterOutExistingTransactions = async (transactions: Transaction[])
   if (transactions.length === 0) {
     return [];
   }
-  console.log(transactions.map(transaction => transaction.sourceReference));
   const sqlQuery = `SELECT source_reference FROM "transactions" WHERE source_reference in (${transactions.map((transaction, index) => "$" + (index + 1)).join(", ")})`;
   const params = transactions.map(transaction => transaction.sourceReference);
   const existingTransactionSourceReferences = (await query(sqlQuery, params) as any[])
     .map(existingTransaction => existingTransaction.source_reference);
-  console.log("existingTransactionSourceReferences", existingTransactionSourceReferences);
-  console.log('transactions', transactions);
   return transactions.filter(transaction => existingTransactionSourceReferences.indexOf(transaction.sourceReference) === -1);
 }

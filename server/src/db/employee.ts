@@ -9,13 +9,15 @@
 
 
 
-import Mongoose from "mongoose";
+// import Mongoose from "mongoose";
+import EmployeeModel  from "./model/employee";
 // import EmployeeModel, {EmployeeType} from "./model/employee"
 export const getEmployees = async () => {
     // const newEmployee = new EmployeeModel(employee);
     // await newEmployee.save()
 //   return newEmployee
-  return Mongoose.model("employee").find()
+  const employees = await EmployeeModel.find()
+  return employees
 };
 
 // import EmployeeModel from "./model/employee";
