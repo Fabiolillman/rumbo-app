@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { moveSyntheticComments } from "typescript";
 import { getTransactions, getTransactionsMeta, postTransaction, deleteTransaction } from "../../api/crudTransactions"
 import getDescriptionsByEmail from "../../api/getDescriptionsByEmail";
 import { getVismaImport } from '../../api/getVismaImport';
+
 
 import { Transaction, DateFilter, TransactionFilter, TransactionStatus } from "../../types";
 
@@ -46,7 +48,6 @@ export const fetchTransactionsMeta: any = createAsyncThunk(
 export const importFromVisma: any = createAsyncThunk(
   "importfromvisma/fetch",
   async ({ user, filter }: any, thunkAPI) => {
-    console.log('hej hej');
     const state: any = thunkAPI.getState();
     return await getVismaImport(
       state.authentication.jwtIdToken,
