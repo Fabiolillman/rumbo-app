@@ -38,7 +38,7 @@ if (process.env.VISMA_IMPORT_FEATURE === 'true') {
 }
 
 app.get('/project-list', async (req, res) => {
-  if (!req["isAdmin"]) {
+  if (req["isAdmin"]) {
     res.send(401).end();
   }
   else {
