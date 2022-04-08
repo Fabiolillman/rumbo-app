@@ -38,8 +38,8 @@ if (process.env.VISMA_IMPORT_FEATURE === 'true') {
 }
 
 app.get('/project-list', async (req, res) => {
-  if (req["isAdmin"]) {
-    res.send(401).end();
+  if (!req["isAdmin"]) {
+    res.sendStatus(401).end();
   }
   else {
     const projects = await getProjects();
@@ -57,7 +57,7 @@ app.get('/:email/project-list', async (req, res) => {
 
 app.get('/user/:email/description', async (req, res) => {
   if (!req["isAdmin"]) {
-    res.send(401).end();
+    res.sendStatus(401).end();
   } else {
     const response: any = await getDescriptionsByEmail(req.params.email);
     res.json(response.map((transaction: any) => transaction.description));
