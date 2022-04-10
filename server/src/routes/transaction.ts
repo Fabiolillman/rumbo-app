@@ -6,25 +6,21 @@ import { validationResult } from "express-validator";
 const router = express.Router();
 
 router.delete("/:transactionId", async (req, res) => {
+
     if (!req["isAdmin"]) {
       res.sendStatus(401).end();
     } else {
   
-      const transactionId = Number(req.params.transactionId);
-      console.log(transactionId);
-  
-      if (!Number.isInteger(transactionId)) {
-        return res.sendStatus(400);
+      const transactionId = req.params.transactionId;
+      
+      const transaction = await getTransactionById(transactionId);
+      if (!transaction) {
+        res.sendStatus(404);
       } else {
-        const transaction = await getTransactionById(Number(transactionId));
-        if (!transaction) {
-          res.sendStatus(404);
-        } else {
-          await deleteTransactionById(transactionId);
-          res.json(transaction);
-        }
+        await deleteTransactionById(transactionId);
+        res.json(transaction);
       }
-  
+
       res.json();
     }
   });
