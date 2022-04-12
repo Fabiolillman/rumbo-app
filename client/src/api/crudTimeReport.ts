@@ -51,6 +51,7 @@ export const updateTimeReport = (jwtToken: string, timeReport: TimeReport) => {
 };
 
 export const deleteTimeReport = (jwtToken: string, timeReport: TimeReport) => {
+    console.log('API', timeReport)
     return fetch(`${process.env.REACT_APP_API_BASE_URL}/${timeReport.email}/timereport/${timeReport.id}`, {
         method: 'DELETE',
         headers: { authorization: `bearer ${jwtToken}`, 'Content-Type': 'application/json' },

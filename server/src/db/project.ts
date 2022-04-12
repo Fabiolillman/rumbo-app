@@ -24,20 +24,28 @@
 // import { query } from "./db";
 // import Mongoose from "mongoose";
 // import ProjectModel from "./model/projects"
-import projectModel  from "./model/projects";
+import ProjectModel  from "./model/projects";
 
 
-export const getProjects = async (email?: string) => {
-    const employees = await projectModel.find()
-    return employees
-    // let whereClause = '';
-    // let params = [];
-    // if (email) {
-    //     whereClause = `WHERE public.employees.email = $1`;
-    //     params = [ email ]
-    // }
+// export const getProjects = async (email?: string) => {
+//     const employees = await projectModel.find()
+//     return employees
+//     // let whereClause = '';
+//     // let params = [];
+//     // if (email) {
+//     //     whereClause = `WHERE public.employees.email = $1`;
+//     //     params = [ email ]
+//     // }
 
-    // const sqlQuery = `SELECT public.projects.id, public.projects.project_name FROM public.projects`;
+//     // const sqlQuery = `SELECT public.projects.id, public.projects.project_name FROM public.projects`;
     
-    // return query(sqlQuery, params);
-}
+//     // return query(sqlQuery, params);
+// }
+
+export const getProjects = async () => {
+    // const newEmployee = new EmployeeModel(employee);
+    // await newEmployee.save()
+//   return newEmployee
+  const project = await ProjectModel.find()
+  return project
+};
