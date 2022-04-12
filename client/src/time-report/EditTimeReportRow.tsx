@@ -78,6 +78,12 @@ const EditTimeReportRow = ({
 
   const isFormValid = (timeReport: TimeReport) => {
     let isValid = true;
+
+    console.log('desctription: ', timeReport.description);
+    console.log('hours: ', timeReport.hours);
+    console.log('id: ',timeReport.project_id);
+    console.log('time: ', timeReport.time);
+    console.log('time: ', timeReport);
     if (!timeReport.description) {
       setIsDescriptionValid(false);
       isValid = false;
@@ -108,7 +114,7 @@ const EditTimeReportRow = ({
     );
 
     if (project) {
-      updateTimeReport({ ...timeReport, project_id: project.id });
+      updateTimeReport({ ...timeReport, project_id: project._id });
     }
   };
 

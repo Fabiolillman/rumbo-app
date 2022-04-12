@@ -9,8 +9,9 @@
 
 
 
+
 // import Mongoose from "mongoose";
-import EmployeeModel  from "./model/employee";
+import EmployeeModel from "./model/employee";
 // import EmployeeModel, {EmployeeType} from "./model/employee"
 export const getEmployees = async () => {
     // const newEmployee = new EmployeeModel(employee);
